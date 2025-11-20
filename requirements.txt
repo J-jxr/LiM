@@ -1,6 +1,17 @@
+# 数据处理与 CSV 读写
 pandas==2.2.2
+
+# 数值计算与矩阵操作
 numpy==1.26.4
+
+# 预处理、数据划分与评估指标
 scikit-learn==1.4.2
+
+# 分类模型（梯度提升树）
 xgboost==2.1.1
+
+# 解析 PCAP/TLS（依赖系统已安装 Wireshark/TShark）
 pyshark==0.6
+
+# 进度条显示
 tqdm==4.66.1
