@@ -1,115 +1,38 @@
-# Less is More (LiM) - Simplifying Network Traffic Classification
-
-<p align="center">
-   <a href="https://doi.org/10.5281/zenodo.14840527" target='_blank'><img src="https://zenodo.org/badge/924667348.svg" alt="DOI"></a>
-   <a href=''><img src='https://img.shields.io/badge/license-MIT-000000.svg'></a> 
-</p>
-
-This repository contains the implementation of **LiM (Less is More)**, a lightweight network traffic classification approach using **NetMatrix** representation and an **XGBoost classifier**. LiM is based on the research paper:
-
-> **"Less is More: Simplifying Network Traffic Classification Leveraging RFCs"**\
-> *Nimesha Wickramasinghe, Arash Shaghaghi, Elena Ferrari, Sanjay Jha*\
-> *Published at WWW Companion '25*\
-> [Read it on ACM DL](https://doi.org/10.1145/3701716.3715492) | [Read it on ArXiv](https://arxiv.org/abs/2502.00586)
-
-## 📌 Overview
-
-Encrypted traffic classification is essential for **network security, monitoring, and management**. However, deep-learning-based methods often introduce unnecessary complexity, making them resource-intensive. **LiM** provides a **lightweight, RFC-compliant tabular representation** (NetMatrix) and achieves **high classification accuracy** with significantly **lower computational cost** than deep-learning models like **ET-BERT** and **YaTC**.
-
-## 📂 Repository Structure
-
+# 项目本地环境配置
+## 命令如下：
 ```
-📁 LiM-Network-Traffic-Classification
-│── requirements.txt             # Required dependencies
-│── cstnet-tls1.3_5_packets.csv  # Pre-processed NetMatrix representation of the CSTNET-TLS1.3 dataset (10 classes)
-│── pcap_to_netmatrix.py         # Script to convert custom PCAP files to NetMatrix representation
-│── xgboost_classifier.py        # XGBoost classifier for network traffic classification
-│── README.md                    # Project documentation
-```
+# 创建一个新的conda环境
+conda create -n lim-env python=3.10
 
-## 📥 Installation
+# 激活环境
+conda activate lim-env
 
-Install the required dependencies using:
-
-```sh
+# 安装依赖
+# 进入项目所在目录，如 cd E:\code\python\LiM
 pip install -r requirements.txt
+
+# 快速测试
+# 项目已提供预处理好的数据文件：cstnet-tls1.3_5_packets.csv
+# 直接运行分类器查看结果
+(lim-env) E:\code\python\LiM>python xgboost_classifier.py
+Accuracy: 0.9534883720930233
+Classification Report:
+                 precision    recall  f1-score   support
+
+     apple.com       0.96      0.91      0.93        99
+     cisco.com       1.00      0.99      0.99        99
+cloudflare.com       0.98      1.00      0.99        88
+  facebook.com       0.84      0.95      0.90        85
+    github.com       0.96      0.91      0.94        82
+    icloud.com       0.96      0.97      0.96        95
+   netflix.com       0.95      0.94      0.95        86
+      nike.com       0.95      0.96      0.96       101
+    nvidia.com       0.98      0.93      0.95        85
+     yahoo.com       0.96      0.96      0.96        83
+
+      accuracy                           0.95       903
+     macro avg       0.95      0.95      0.95       903
+  weighted avg       0.95      0.95      0.95       903
+
 ```
 
-## 🔄 Converting Your Own Dataset
-
-To use a **custom dataset**, follow these steps:
-
-1. Replace your **PCAP file** directory in the `pcap_to_netmatrix.py` file.
-
-2. Run the `pcap_to_netmatrix.py` script with the dataset path:
-
-   ```sh
-   python pcap_to_netmatrix.py
-   ```
-
-3. The script will process the packets and generate a **NetMatrix representation** as a CSV file.
-
-## 🚀 Running the XGBoost Classifier
-
-To perform network traffic classification using the pre-processed **NetMatrix representation**, execute:
-
-```sh
-python xgboost_classifier.py
-```
-
-### 🎯 Expected Output
-
-The script will train and evaluate the **XGBoost model** and display metrics such as **accuracy, precision, recall, and F1-score**.
-
-## 📊 Results Summary
-
-| Model          | Accuracy | Recall | Precision | F1 Score |
-| -------------- | -------- | ------ | --------- | -------- |
-| **LiM (Ours)** | 0.942    | 0.942  | 0.943     | 0.942    |
-
-
-## 🔧 Future Enhancements
-
-- Expand evaluation to **other datasets** beyond CSTNET-TLS1.3.
-- Extend classification to **new network traffic protocols**.
-- Improve feature selection and representation methods for better performance.
-
-## 🤝 Contribution
-
-Feel free to **fork**, **contribute**, and **open issues** for improvements! For major changes, please open an issue first to discuss your ideas.
-
-## 📜 Citation
-
-If you find this work useful, please consider citing our paper:
-
-```bibtex
-@inproceedings{wickramasinghe2025lim,
-   author = {Wickramasinghe, Nimesha and Shaghaghi, Arash and Ferrari, Elena and Jha, Sanjay},
-   title = {Less is More: Simplifying Network Traffic Classification Leveraging RFCs},
-   year = {2025},
-   isbn = {9798400713316},
-   publisher = {Association for Computing Machinery},
-   address = {New York, NY, USA},
-   url = {https://doi.org/10.1145/3701716.3715492},
-   doi = {10.1145/3701716.3715492},
-   booktitle = {Companion Proceedings of the ACM on Web Conference 2025},
-   pages = {1398–1401},
-   numpages = {4},
-   keywords = {encrypted traffic classification, lim, netmatrix, rfc-compliance},
-   location = {Sydney NSW, Australia},
-   series = {WWW '25}
-}
-```
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
-
----
-
-For questions or suggestions, contact:
-
-- **Nimesha Wickramasinghe** - [*n.wickramasinghe@unsw.edu.au*](mailto\:n.wickramasinghe@unsw.edu.au)
-- **Arash Shaghaghi** - [*a.shaghaghi@unsw.edu.au*](mailto\:a.shaghaghi@unsw.edu.au)
-
-Happy coding! 🚀
